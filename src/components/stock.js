@@ -15,7 +15,7 @@ function Stock({ stock, styling }) {
           Name: { stock.name }
           <br />
           <br />
-          Time : { moment(stock.date_utc).format('DD-MM-YYYY') }
+          Date : { moment(stock.date_utc).format('DD-MM-YYYY') }
           {' '}
           {' '}
           <br />
@@ -37,7 +37,6 @@ function Stock({ stock, styling }) {
           })}</div>
         </h4>
       </Link>
-      <p className="stockprice">{stock.price}</p>
     </div>
   );
 }
