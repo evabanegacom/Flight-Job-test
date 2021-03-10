@@ -6,6 +6,7 @@ import moment from 'moment';
 
 
 function Stock({ stock, styling }) {
+  
   return (
     <div style={styling}>
       <Link to='' key={stock.symbol} className="link-decor">
@@ -22,7 +23,19 @@ function Stock({ stock, styling }) {
           <img style={{width: '100px', height: '100px'}} src={stock.links.patch.small} alt='' />
           <br />
           <br />
-          Success_landing:
+          Success_landing: <div style={{ color: 'cyan'}}>{stock.cores.map((core) => {
+            console.log(core.landing_success)
+            if(core.landing_success === true){
+              return <p>true</p>
+            }
+
+            if(core.landing_success === false){
+              return <p>false</p>
+            }
+            if(core.landing_success === null){
+              return <p>null</p>
+            }  
+          })}</div>
         </h4>
       </Link>
       <p className="stockprice">{stock.price}</p>

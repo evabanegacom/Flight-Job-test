@@ -11,8 +11,6 @@ const initialState = {
 };
 
 const flightReducer = (state = initialState, action) => {
-  console.log(action.payload);
-
   switch (action.type) {
     case FETCH_FLIGHT_BEGIN:
       return {

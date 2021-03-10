@@ -39,6 +39,7 @@ class Home extends Component {
 
   render() {
     const { flights } = this.props;
+    
     const PER_PAGE = 20;
     const offset = this.state.currentPage * PER_PAGE;
     const pageCount = Math.ceil(flights.length / PER_PAGE);
@@ -58,7 +59,6 @@ class Home extends Component {
     ) : (
       <p>loading...</p>
     );
-
     return (
       <div
         style={{
