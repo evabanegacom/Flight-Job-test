@@ -24,7 +24,6 @@ function Stock({ stock, styling }) {
           <br />
           <br />
           Success_landing: <div style={{ color: 'cyan'}}>{stock.cores.map((core) => {
-            console.log(core.landing_success)
             if(core.landing_success === true){
               return <p>true</p>
             }

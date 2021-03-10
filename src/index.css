@@ -89,6 +89,7 @@ code {
   color: #6c7ac9;
   background: black;
   font-weight: 700;
+  outline: none;
 }
 
 .pagination__link {
