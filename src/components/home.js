@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import Stock from "./stock";
 import ReactPaginate from "react-paginate";
 import moment from 'moment';
-import { getStocks, searchFilter } from "../actions/actions";
+import { getFlights } from "../actions/actions";
 
 class Home extends Component {
   constructor(props) {
@@ -33,15 +33,15 @@ class Home extends Component {
 
   componentDidMount() {
     const { actions } = this.props;
-    const stocks = actions.getStocks();
-    return stocks;
+    const flights = actions.getFlights();
+    return flights;
   }
 
   render() {
-    const { stocks } = this.props;
+    const { flights } = this.props;
     const PER_PAGE = 20;
     const offset = this.state.currentPage * PER_PAGE;
-    const pageCount = Math.ceil(stocks.length / PER_PAGE);
+    const pageCount = Math.ceil(flights.length / PER_PAGE);
     const styling = {
       width: "24%",
       background: "purple",
@@ -49,8 +49,8 @@ class Home extends Component {
       margin: "auto",
       border: "1px solid gray",
     };
-    const stockList = stocks ? (
-      stocks
+    const flightList = flights ? (
+      flights
         .slice(offset, offset + PER_PAGE)
         .map((stock) => (
           <Stock stock={stock} styling={styling} key={Math.random()} />
@@ -73,7 +73,7 @@ class Home extends Component {
           onChange={this.handleSearches}
           style={{ width: '300px', height: '30px', borderRadius: '10px', background: 'blue', outline: 'none', border: 'none', marginTop: '20px', color: '#FFFFFF'}}
         />
-        { stocks.filter((val) => {
+        { flights.filter((val) => {
           if(this.state.search === ''){
             return null
           } else if (val.name.toLocaleLowerCase().includes(this.state.search)){
@@ -87,7 +87,7 @@ class Home extends Component {
             </div>
           )
         })}
-        <div className="stocks">{stockList}</div>
+        <div className="stocks">{flightList}</div>
         <ReactPaginate
           previousLabel={"← Previous"}
           nextLabel={"Next →"}
@@ -105,17 +105,17 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  stocks: state.stockReducer.stocks,
+  flights: state.flightReducer.flights,
 });
 
 Home.propTypes = {
-  stocks: PropTypes.arrayOf(PropTypes.object).isRequired,
+  flight: PropTypes.arrayOf(PropTypes.object).isRequired,
   actions: PropTypes.func.isRequired,
 };
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators({ getStocks }, dispatch),
+    actions: bindActionCreators({ getFlights }, dispatch),
   };
 }
 

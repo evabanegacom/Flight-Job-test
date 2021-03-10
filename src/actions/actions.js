@@ -1,25 +1,20 @@
 /* eslint-disable */
 
-export const searchFilter = stockCategory => ({
-  type: 'CHANGE_FILTERS',
-  stockCategory,
+export const FETCH_FLIGHT_BEGIN = 'FETCH_FLIGHT_BEGIN';
+export const FETCH_FLIGHT_SUCCESS = 'FETCH_FLIGHT_SUCCESS';
+export const FETCH_FLIGHT_FAILURE = 'FETCH_FLIGHT_FAILURE';
+
+export const fetchFlightBegin = () => ({
+  type: FETCH_FLIGHT_BEGIN,
 });
 
-export const FETCH_STOCKS_BEGIN = 'FETCH_STOCKS_BEGIN';
-export const FETCH_STOCKS_SUCCESS = 'FETCH_STOCKS_SUCCESS';
-export const FETCH_STOCKS_FAILURE = 'FETCH_STOCKS_FAILURE';
-
-export const fetchStocksBegin = () => ({
-  type: FETCH_STOCKS_BEGIN,
-});
-
-export const fetchStocksSuccess = data => ({
-  type: FETCH_STOCKS_SUCCESS,
+export const fetchFlightSuccess = data => ({
+  type: FETCH_FLIGHT_SUCCESS,
   payload: data,
 });
 
-export const fetchStocksFailure = error => ({
-  type: FETCH_STOCKS_FAILURE,
+export const fetchFlightFailure = error => ({
+  type: FETCH_FLIGHT_FAILURE,
   payload: error,
 });
 
@@ -30,17 +25,17 @@ function handleErrors(response) {
   return response;
 }
 
-export function getStocks() {
+export function getFlights() {
   return dispatch => {
-    dispatch(fetchStocksBegin());
+    dispatch(fetchFlightBegin());
     return fetch('https://api.spacexdata.com/v4/launches/past')
       .then(handleErrors)
       .then(res => res.json()
         .then(json => {
-          dispatch(fetchStocksSuccess(json));
+          dispatch(fetchFlightSuccess(json));
           return json.data;
         }))
-      .catch(error => dispatch(fetchStocksFailure(error)));
+      .catch(error => dispatch(fetchFlightFailure(error)));
   };
 }
 

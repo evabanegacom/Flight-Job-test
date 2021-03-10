@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import stockReducer from './stockReducer';
+import flightReducer from './stockReducer';
 
-const rootReducer = combineReducers({ stockReducer });
+const rootReducer = combineReducers({ flightReducer });
 
 export default rootReducer;

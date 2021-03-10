@@ -1,33 +1,33 @@
 import {
-  FETCH_STOCKS_BEGIN,
-  FETCH_STOCKS_SUCCESS,
-  FETCH_STOCKS_FAILURE,
+  FETCH_FLIGHT_BEGIN,
+  FETCH_FLIGHT_SUCCESS,
+  FETCH_FLIGHT_FAILURE,
 } from '../actions/actions';
 
 const initialState = {
-  stocks: [],
+  flights: [],
   error: null,
   waiting: 'wait for it',
 };
 
-const stockReducer = (state = initialState, action) => {
+const flightReducer = (state = initialState, action) => {
   console.log(action.payload);
 
   switch (action.type) {
-    case FETCH_STOCKS_BEGIN:
+    case FETCH_FLIGHT_BEGIN:
       return {
         ...state,
         waiting: 'wait for it',
       };
 
-    case FETCH_STOCKS_SUCCESS:
+    case FETCH_FLIGHT_SUCCESS:
       return {
         ...state,
         waiting: 'here we are',
-        stocks: action.payload,
+        flights: action.payload,
       };
 
-    case FETCH_STOCKS_FAILURE:
+    case FETCH_FLIGHT_FAILURE:
       return {
         ...state,
         error: action.payload.error,
@@ -39,4 +39,4 @@ const stockReducer = (state = initialState, action) => {
   }
 };
 
-export default stockReducer;
+export default flightReducer;
