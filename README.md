@@ -56,10 +56,6 @@ To have this app on your pc, you need to:
   ```
   npm start OR yarn start
 
-# Live Demo
-- (https://eagle-claw.herokuapp.com/)
-
-
 ### Built With
 This project was built using these technologies.
 * Html & css
