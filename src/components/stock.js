@@ -15,7 +15,7 @@ function Stock({ stock, styling }) {
           Name: { stock.name }
           <br />
           <br />
-          Time : { moment(stock.date_utc).format('DD-MM-YYYY') }
+          Date : { moment(stock.date_utc).format('DD-MM-YYYY') }
           {' '}
           {' '}
           <br />
@@ -24,7 +24,6 @@ function Stock({ stock, styling }) {
           <br />
           <br />
           Success_landing: <div style={{ color: 'cyan'}}>{stock.cores.map((core) => {
-            console.log(core.landing_success)
             if(core.landing_success === true){
               return <p>true</p>
             }
@@ -38,7 +37,6 @@ function Stock({ stock, styling }) {
           })}</div>
         </h4>
       </Link>
-      <p className="stockprice">{stock.price}</p>
     </div>
   );
 }
