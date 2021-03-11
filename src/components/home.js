@@ -51,7 +51,13 @@ class Home extends Component {
       border: "1px solid gray",
     };
     const flightList = flights ? (
-      flights
+      flights.filter((stock) => {
+        if(this.state.search === ''){
+          return stock
+        } else if(stock.name.toLocaleLowerCase().includes(this.state.search)){
+          return stock
+        }
+      })
         .slice(offset, offset + PER_PAGE)
         .map((stock) => (
           <Stock stock={stock} styling={styling} key={Math.random()} />
@@ -73,7 +79,7 @@ class Home extends Component {
           onChange={this.handleSearches}
           style={{ width: '300px', height: '30px', borderRadius: '10px', background: 'blue', outline: 'none', border: 'none', marginTop: '20px', color: '#FFFFFF'}}
         />
-        { flights.filter((val) => {
+        {/* { flights.filter((val) => {
           if(this.state.search === ''){
             return null
           } else if (val.name.toLocaleLowerCase().includes(this.state.search)){
@@ -86,7 +92,7 @@ class Home extends Component {
               <p>{ moment(val.date_utc).format('DD-MM-YYYY') }</p>
             </div>
           )
-        })}
+        })} */}
         <div className="stocks">{flightList}</div>
         <ReactPaginate
           previousLabel={"← Previous"}
