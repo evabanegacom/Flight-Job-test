@@ -6,7 +6,6 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Stock from "./stock";
 import ReactPaginate from "react-paginate";
-import moment from 'moment';
 import { getFlights } from "../actions/actions";
 
 class Home extends Component {
@@ -55,7 +54,7 @@ class Home extends Component {
       flights.filter((stock) => {
         if(this.state.search === ""){
           return flights.slice(offset, offset + PER_PAGE).map((stock) => (<Stock stock={stock} styling={styling} key={Math.random()} />))
-        } else if(stock.name.toLocaleLowerCase().includes(this.state.search)){
+        } else if(stock.name.toLocaleLowerCase().includes(this.state.search.toLocaleLowerCase())){
           return stock
         }
       })
@@ -80,20 +79,6 @@ class Home extends Component {
           onChange={this.handleSearches}
           style={{ width: '300px', height: '30px', borderRadius: '10px', background: 'blue', outline: 'none', border: 'none', marginTop: '20px', color: '#FFFFFF'}}
         />
-        {/* { flights.filter((val) => {
-          if(this.state.search === ''){
-            return null
-          } else if (val.name.toLocaleLowerCase().includes(this.state.search)){
-            return val
-          }
-        }).map((val) => {
-          return (
-            <div style={{ textAlign: 'center', border: '1px solid grey', background: 'blue', color: '#FFFFFF', borderRadius: '10px', padding: '10px'}}>
-              <p>{val.name}</p>
-              <p>{ moment(val.date_utc).format('DD-MM-YYYY') }</p>
-            </div>
-          )
-        })} */}
         <div className="stocks">{flightList}</div>
         <ReactPaginate
           previousLabel={"← Previous"}
