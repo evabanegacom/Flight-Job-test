@@ -15,6 +15,7 @@ class Home extends Component {
 
     this.state = {
       currentPage: 0,
+      search: '',
     };
   }
 
@@ -52,8 +53,8 @@ class Home extends Component {
     };
     const flightList = flights ? (
       flights.filter((stock) => {
-        if(this.state.search === ''){
-          return stock
+        if(this.state.search === ""){
+          return flights.slice(offset, offset + PER_PAGE).map((stock) => (<Stock stock={stock} styling={styling} key={Math.random()} />))
         } else if(stock.name.toLocaleLowerCase().includes(this.state.search)){
           return stock
         }
